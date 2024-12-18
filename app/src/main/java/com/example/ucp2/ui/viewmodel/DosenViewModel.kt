@@ -57,6 +57,15 @@ class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel(
         }
     }
 
+    // Mendapatkan semua dosen dari repository
+    fun fetchAllDosen() {
+        viewModelScope.launch {
+            repositoryDosen.getAllDosen().collect { dosenList ->
+                uiState = uiState.copy(dosenList = dosenList)
+            }
+        }
+    }
+
 
 
     data class DosenUIState(

@@ -10,7 +10,7 @@ import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.data.entity.MataKuliah
 
 @Database(entities = [Dosen::class, MataKuliah::class], version = 1, exportSchema = false)
-abstract class KrsDatabase : RoomDatabase()
+abstract class AllDatabase : RoomDatabase()
 {
 
     // Mendefinisikan fungsi untuk mengakses DAO
@@ -19,13 +19,13 @@ abstract class KrsDatabase : RoomDatabase()
 
     companion object {
         @Volatile
-        private var INSTANCE: KrsDatabase? = null
+        private var INSTANCE: AllDatabase? = null
 
-        fun getDatabase(context: Context): KrsDatabase {
+        fun getDatabase(context: Context): AllDatabase {
             return INSTANCE ?: synchronized(this) {
                 Room.databaseBuilder(
                     context.applicationContext,
-                    KrsDatabase::class.java, // Class database
+                    AllDatabase::class.java, // Class database
                     "AllDatabase" // Nama database
                 ).build().also { INSTANCE = it }
             }

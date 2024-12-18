@@ -1,11 +1,18 @@
 package com.example.ucp2.ui.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.repository.RepositoryDosen
 
 class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel()
 {
+    var uiState by mutableStateOf(DosenUIState())
+
+
+
 
     data class DosenUIState(
         val dosenEvent: DosenEvent = DosenEvent(),

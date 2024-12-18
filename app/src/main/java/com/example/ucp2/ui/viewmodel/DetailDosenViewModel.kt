@@ -72,11 +72,7 @@ fun Dosen.toDetailUiEvent(): DosenEvent {
     )
 }
 
-data class DosenEvent(
-    val nidn: String = "",
-    val nama: String = "",
-    val jenisKelamin: String = ""
-)
+
 fun DosenEvent.toDosenEntity(): Dosen = Dosen(
     nidn = nidn,
     nama = nama,

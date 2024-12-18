@@ -25,6 +25,8 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -36,13 +38,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.viewmodel.DosenViewModel
+import com.example.ucp2.ui.viewmodel.HomeDosenViewModel
 import com.example.ucp2.ui.viewmodel.HomeUiState
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeDosenView(
-    viewModel: DosenViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    viewModel: HomeDosenViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onAddDosen: () -> Unit = { },
     onDetailClick: (String) -> Unit = { },
     modifier: Modifier = Modifier
@@ -69,7 +72,7 @@ fun HomeDosenView(
             }
         }
     ) { innerPadding ->
-        val dosenUiState by viewModel.uiState.collectAsState()
+        val dosenUiState by viewModel.homeUiState.collectAsState()
         BodyHomeDosenView(
             dosenUiState = dosenUiState,
             onClick = {

@@ -10,7 +10,13 @@ import com.example.ucp2.repository.RepositoryDosen
 class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel()
 {
     var uiState by mutableStateOf(DosenUIState())
+    // Memperbarui state berdasarkan inputan
 
+    fun updateState(dosenEvent: DosenEvent) {
+        uiState = uiState.copy(
+            dosenEvent = dosenEvent
+        )
+    }
 
 
 

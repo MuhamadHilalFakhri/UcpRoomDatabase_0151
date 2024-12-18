@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -35,6 +36,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.viewmodel.DosenViewModel
+import com.example.ucp2.ui.viewmodel.HomeUiState
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
@@ -68,7 +70,6 @@ fun HomeDosenView(
         }
     ) { innerPadding ->
         val dosenUiState by viewModel.uiState.collectAsState()
-
         BodyHomeDosenView(
             dosenUiState = dosenUiState,
             onClick = {
@@ -81,7 +82,7 @@ fun HomeDosenView(
 
 @Composable
 fun BodyHomeDosenView(
-    dosenUiState: DosenViewModel.DosenUIState,
+    dosenUiState: HomeUiState,
     onClick: (String) -> Unit = { },
     modifier: Modifier = Modifier
 ) {
@@ -89,17 +90,26 @@ fun BodyHomeDosenView(
     val snackbarHostState = remember { SnackbarHostState() }
 
     when {
-        dosenUiState.snackBarMessage != null -> {
-            // Menampilkan pesan Snackbar
+        dosenUiState.isLoading -> {
+            // Menampilkan indikator loading
+            Box(
+                modifier = modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        }
+        dosenUiState.isError -> {
+            // Menampilkan pesan error
             LaunchedEffect(dosenUiState) {
-                dosenUiState.snackBarMessage?.let { message ->
+                dosenUiState.errorMessage?.let { message ->
                     coroutineScope.launch {
                         snackbarHostState.showSnackbar(message)
                     }
                 }
             }
         }
-        dosenUiState.dosenList.isEmpty() -> {
+        dosenUiState.listDosen.isEmpty() -> {
             // Menampilkan pesan jika data kosong
             Box(
                 modifier = modifier.fillMaxSize(),
@@ -117,13 +127,14 @@ fun BodyHomeDosenView(
         else -> {
             // Menampilkan daftar dosen
             ListDosen(
-                listDosen = dosenUiState.dosenList,
+                listDosen = dosenUiState.listDosen,
                 onClick = { onClick(it) },
                 modifier = modifier
             )
         }
     }
 }
+
 
 
 @Composable

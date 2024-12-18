@@ -30,4 +30,11 @@ class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel(
         val nama: String = "",
         val jenisKelamin: String = ""
     )
+
+    // Menyimpan input form ke dalam entity
+    fun DosenEvent.toDosenEntity(): Dosen = Dosen(
+        nidn = nidn,
+        nama = nama,
+        jenisKelamin = jenisKelamin
+    )
 }

@@ -66,6 +66,15 @@ class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel(
         }
     }
 
+    // Mendapatkan dosen berdasarkan NIDN
+    fun fetchDosenByNidn(nidn: String) {
+        viewModelScope.launch {
+            repositoryDosen.getDosen(nidn).collect { dosen ->
+                uiState = uiState.copy(selectedDosen = dosen)
+            }
+        }
+    }
+
 
 
     data class DosenUIState(

@@ -34,7 +34,62 @@ import com.example.ucp2.ui.viewmodel.DosenViewModel.FormErrorState
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
+object DestinasiInsert : AlamatNavigasi {
+    override val route: String = "insert_mhs"
+}
+@Composable
+fun InsertDosenView(
+    onBack: () -> Unit,
+    onNavigate: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: DosenViewModel = viewModel(factory = PenyediaViewModel.Factory)
+) {
+    val uiState = viewModel.uiState // Ambil UI state dari ViewModel
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
+    // Observasi perubahan snackbarMessage
+    LaunchedEffect(uiState.snackBarMessage) {
+        uiState.snackBarMessage?.let { message ->
+            coroutineScope.launch {
+                snackbarHostState.showSnackbar(message)
+                viewModel.resetSnackBarMessage()
+            }
+        }
+    }
+
+    Scaffold(
+        modifier = modifier,
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(padding)
+                .padding(16.dp)
+        ) {
+            CustomTopAppBar(
+                onBack = onBack,
+                showBackButton = true,
+                judul = "Tambah Dosen"
+            )
+
+            // Isi Body
+            InsertBodyDosen(
+                uiState = uiState,
+                onValueChange = { updateEvent ->
+                    viewModel.updateState(updateEvent)
+                },
+                onClick = {
+                    coroutineScope.launch {
+                        viewModel.saveData() // Simpan data
+                    }
+                    onNavigate()
+                }
+            )
+        }
+    }
+}
 
 @Composable
 fun InsertBodyDosen(

@@ -1,10 +1,19 @@
 package com.example.ucp2.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.repository.RepositoryDosen
 
 class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel()
 {
+
+    data class DosenUIState(
+        val dosenEvent: DosenEvent = DosenEvent(),
+        val isEntryValid: FormErrorState = FormErrorState(),
+        val snackBarMessage: String? = null,
+        val dosenList: List<Dosen> = emptyList(),
+        val selectedDosen: Dosen? = null
+    )
 
     data class FormErrorState(
         val nidn: String? = null,

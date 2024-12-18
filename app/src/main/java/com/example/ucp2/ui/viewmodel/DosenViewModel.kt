@@ -57,23 +57,6 @@ class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel(
         }
     }
 
-    // Mendapatkan semua dosen dari repository
-    fun fetchAllDosen() {
-        viewModelScope.launch {
-            repositoryDosen.getAllDosen().collect { dosenList ->
-                uiState = uiState.copy(dosenList = dosenList)
-            }
-        }
-    }
-
-    // Mendapatkan dosen berdasarkan NIDN
-    fun fetchDosenByNidn(nidn: String) {
-        viewModelScope.launch {
-            repositoryDosen.getDosen(nidn).collect { dosen ->
-                uiState = uiState.copy(selectedDosen = dosen)
-            }
-        }
-    }
 
     // Reset pesan Snackbar setelah ditampilkan
     fun resetSnackBarMessage() {
@@ -87,9 +70,8 @@ class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel(
     data class DosenUIState(
         val dosenEvent: DosenEvent = DosenEvent(),
         val isEntryValid: FormErrorState = FormErrorState(),
-        val snackBarMessage: String? = null,
-        val dosenList: List<Dosen> = emptyList(),
-        val selectedDosen: Dosen? = null
+        val snackBarMessage: String? = null
+
     )
 
     data class FormErrorState(

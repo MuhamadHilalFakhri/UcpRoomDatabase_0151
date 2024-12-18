@@ -15,6 +15,11 @@ object PenyediaViewModel {
             )
         }
         initializer {
+            HomeDosenViewModel(
+                sisforApp().containerApp.repositoryDosen
+            )
+        }
+        initializer {
             DetailDosenViewModel(
                 createSavedStateHandle(),
                 sisforApp().containerApp.repositoryDosen

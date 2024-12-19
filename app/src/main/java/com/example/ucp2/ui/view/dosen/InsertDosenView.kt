@@ -27,11 +27,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.navigation.AlamatNavigasi
-import com.example.ucp2.ui.viewmodel.DosenViewModel
-import com.example.ucp2.ui.viewmodel.DosenViewModel.DosenEvent
-import com.example.ucp2.ui.viewmodel.DosenViewModel.DosenUIState
-import com.example.ucp2.ui.viewmodel.DosenViewModel.FormErrorState
-import com.example.ucp2.ui.viewmodel.PenyediaViewModel
+import com.example.ucp2.ui.viewmodeldosen.DosenViewModel
+import com.example.ucp2.ui.viewmodeldosen.DosenViewModel.DosenEvent
+import com.example.ucp2.ui.viewmodeldosen.DosenViewModel.DosenUIState
+import com.example.ucp2.ui.viewmodeldosen.DosenViewModel.FormErrorState
+import com.example.ucp2.ui.viewmodeldosen.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 object DestinasiInsert : AlamatNavigasi {

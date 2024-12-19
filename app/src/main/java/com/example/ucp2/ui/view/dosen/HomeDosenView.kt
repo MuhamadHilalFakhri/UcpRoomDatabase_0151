@@ -37,10 +37,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
-import com.example.ucp2.ui.viewmodel.DosenViewModel
-import com.example.ucp2.ui.viewmodel.HomeDosenViewModel
-import com.example.ucp2.ui.viewmodel.HomeUiState
-import com.example.ucp2.ui.viewmodel.PenyediaViewModel
+import com.example.ucp2.ui.viewmodeldosen.HomeDosenViewModel
+import com.example.ucp2.ui.viewmodeldosen.HomeUiState
+import com.example.ucp2.ui.viewmodeldosen.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @Composable

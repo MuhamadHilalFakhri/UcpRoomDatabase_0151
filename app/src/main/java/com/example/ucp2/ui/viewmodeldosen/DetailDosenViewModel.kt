@@ -1,8 +1,8 @@
-package com.example.ucp2.ui.viewmodel
+package com.example.ucp2.ui.viewmodeldosen
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ucp2.ui.viewmodel.DosenViewModel.DosenEvent
+import com.example.ucp2.ui.viewmodeldosen.DosenViewModel.DosenEvent
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.repository.RepositoryDosen
 import com.example.ucp2.ui.navigation.DestinasiDetailDosen

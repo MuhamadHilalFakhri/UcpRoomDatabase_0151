@@ -3,6 +3,19 @@ package com.example.ucp2.ui.viewmodelmk
 import com.example.ucp2.data.entity.MataKuliah
 
 
+data class DetailMatkulUiState(
+    val detailUiEvent: MataKuliahEvent = MataKuliahEvent(),
+    val isLoading: Boolean = false,
+    val isError: Boolean = false,
+    val errorMessage: String = ""
+) {
+    val isUiEventEmpty: Boolean
+        get() = detailUiEvent == MataKuliahEvent()
+
+    val isUiEventNotEmpty: Boolean
+        get() = detailUiEvent != MataKuliahEvent()
+}
+
 // Memindahkan data dari entity ke UI
 fun MataKuliah.toDetailUiEvent(): MataKuliahEvent {
     return MataKuliahEvent(

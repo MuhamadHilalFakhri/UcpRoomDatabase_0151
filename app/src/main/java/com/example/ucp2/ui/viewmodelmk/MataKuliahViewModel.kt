@@ -7,6 +7,19 @@ import com.example.ucp2.repository.RepositoryMK
 class MataKuliahViewModel(private val repositoryMK: RepositoryMK) : ViewModel()
 {
 
+    data class FormErrorState(
+        val kode: String? = null,
+        val nama: String? = null,
+        val sks: String? = null,
+        val semester: String? = null,
+        val dosenPengampu: String? = null,
+    ) {
+        fun isValid(): Boolean {
+            return kode == null && nama == null && sks == null &&
+                    semester == null && dosenPengampu == null
+        }
+    }
+
     data class MataKuliahEvent(
         val kode: String = "",
         val nama: String = "",

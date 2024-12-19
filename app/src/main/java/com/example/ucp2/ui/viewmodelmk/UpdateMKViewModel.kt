@@ -22,7 +22,7 @@ class UpdateMatkulViewModel(
     private val repositoryMK: RepositoryMK
 ) : ViewModel() {
 
-    var updateUIState by mutableStateOf(MataKuliahViewModel.MatkulUIState())
+    var updateUIState by mutableStateOf(MatkulUIState())
         private set
 
     private val _kode: String = checkNotNull(savedStateHandle[DestinasiUpdateMatkul.KODE])

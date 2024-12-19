@@ -40,7 +40,7 @@ import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.viewmodeldosen.PenyediaViewModel
 import com.example.ucp2.ui.viewmodelmk.HomeMatkulUiState
 import com.example.ucp2.ui.viewmodelmk.HomeMatkulViewModel
-import com.google.mlkit.vision.segmentation.subject.Subject
+
 import kotlinx.coroutines.launch
 @Composable
 fun HomeMatkulView(

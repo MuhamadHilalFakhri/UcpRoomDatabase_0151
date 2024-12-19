@@ -11,8 +11,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MailOutline
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -182,10 +186,10 @@ fun CardMatkul(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ){
-                Icon(imageVector = Icons.Filled.ShoppingCart, contentDescription = "")
+                Icon(imageVector = Icons.Filled.Info, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
-                    text = matkul.nama,
+                    text = matkul.kode,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp
                 )
@@ -194,14 +198,15 @@ fun CardMatkul(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ){
-                Icon(imageVector = Icons.Filled.DateRange, contentDescription = "")
+                Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
-                    text = matkul.kode,
+                    text = matkul.nama,
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
             }
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -211,6 +216,30 @@ fun CardMatkul(
                 Text(
                     text = "${matkul.sks} SKS",
                     fontWeight = FontWeight.Bold
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                Icon(imageVector = Icons.Filled.ArrowDropDown, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = "Semester : ${matkul.semester}",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = "Pengampu : ${matkul.dosenPengampu}",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
                 )
             }
         }

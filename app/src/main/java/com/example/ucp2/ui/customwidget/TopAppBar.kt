@@ -29,8 +29,7 @@ fun CustomTopAppBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .statusBarsPadding()
-            .padding(8.dp),
+            .statusBarsPadding(),
         contentAlignment = Alignment.Center
     ) {
         if (showBackButton) {

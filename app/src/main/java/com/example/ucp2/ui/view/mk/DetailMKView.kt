@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -117,7 +118,10 @@ fun BodyDetailMatkul(
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = "Delete")
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete",
+                    )
                 }
                 if (deleteConfirmationRequired) {
                     DeleteConfirmationDialogMK(

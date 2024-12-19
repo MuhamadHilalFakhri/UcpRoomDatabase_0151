@@ -1,17 +1,47 @@
 package com.example.ucp2.ui.view.mk
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel
 import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel.MataKuliahEvent
 import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel.FormErrorState
 
+@Composable
+fun InsertBodyMatkul(
+    modifier: Modifier = Modifier,
+    onValueChange: (MataKuliahEvent) -> Unit,
+    uiState: MataKuliahViewModel.MatkulUIState,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        FormMatkul(
+            mataKuliahEvent = uiState.mataKuliahEvent,
+            onValueChange = onValueChange,
+            errorState = uiState.isEntryValid,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onClick,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Simpan")
+        }
+    }
+}
 
 @Composable
 fun FormMatkul(

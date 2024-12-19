@@ -20,7 +20,7 @@ fun PengelolaHalamanMK(
     modifier: Modifier = Modifier
 ) {
     NavHost(navController = navController, startDestination = DestinasiHomeMatkul.route) {
-        // Home screen where the list of courses will be shown
+
         composable(
             route = DestinasiHomeMatkul.route
         ) {

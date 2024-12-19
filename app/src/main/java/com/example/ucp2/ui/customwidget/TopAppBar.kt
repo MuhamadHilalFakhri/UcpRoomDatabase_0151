@@ -8,6 +8,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -41,7 +45,10 @@ fun CustomTopAppBar(
                     onClick = onBack,
                     modifier = Modifier.align(Alignment.CenterVertically)
                 ) {
-                    Text("Kembali")
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Kembali",
+                    )
                 }
                 Spacer(modifier = Modifier.weight(2f))
             }

@@ -43,8 +43,6 @@ fun InsertMatkulView(
     val uiState = viewModel.uiStateMK
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
-
-
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->
             coroutineScope.launch {

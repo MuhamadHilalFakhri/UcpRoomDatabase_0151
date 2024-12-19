@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2.data.entity.MataKuliah
 import com.example.ucp2.repository.RepositoryMK
+import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel.MataKuliahEvent
 import com.example.ucp2.ui.navigation.DestinasiDetailMatkul
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -90,11 +91,4 @@ fun MataKuliahEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
     sks = sks,
     semester = semester,
     dosenPengampu = dosenPengampu
-)
-data class MataKuliahEvent(
-    val kode: String = "",
-    val nama: String = "",
-    val sks: String = "",
-    val semester: String = "",
-    val dosenPengampu: String = ""
 )

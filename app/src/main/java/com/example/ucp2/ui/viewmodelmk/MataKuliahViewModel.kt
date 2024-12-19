@@ -7,6 +7,12 @@ import com.example.ucp2.repository.RepositoryMK
 class MataKuliahViewModel(private val repositoryMK: RepositoryMK) : ViewModel()
 {
 
+    data class MatkulUIState(
+        val mataKuliahEvent: MataKuliahEvent = MataKuliahEvent(),
+        val isEntryValid: FormErrorState = FormErrorState(),
+        val snackBarMessage: String? = null,
+    )
+
     data class FormErrorState(
         val kode: String? = null,
         val nama: String? = null,

@@ -32,7 +32,10 @@ import com.example.ucp2.ui.viewmodeldosen.DosenViewModel.DosenEvent
 import com.example.ucp2.ui.viewmodeldosen.DosenViewModel.DosenUIState
 import com.example.ucp2.ui.viewmodeldosen.DosenViewModel.FormErrorState
 import com.example.ucp2.ui.viewmodeldosen.PenyediaViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object DestinasiInsert : AlamatNavigasi {
     override val route: String = "insert_mhs"
@@ -82,9 +85,14 @@ fun InsertDosenView(
                 },
                 onClick = {
                     coroutineScope.launch {
-                        viewModel.saveData() // Simpan data
+                        if (viewModel.validateFields()) {
+                            viewModel.saveData()
+                            delay(600)
+                            withContext(Dispatchers.Main) {
+                                onNavigate()
+                            }
+                        }
                     }
-                    onNavigate()
                 }
             )
         }

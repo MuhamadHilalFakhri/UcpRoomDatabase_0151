@@ -21,7 +21,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 @Composable
 fun UpdateMatkulView(
     onBack: () -> Unit,
@@ -30,16 +29,19 @@ fun UpdateMatkulView(
     viewModel: UpdateMatkulViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val uiState = viewModel.updateUIState
+    val dosenList = viewModel.dosenList // Memastikan data dosen sudah terisi
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
+    // Memanggil getDosenList untuk memuat data dosen
+    LaunchedEffect(Unit) {
+        viewModel.getDosenList()
+    }
+
     // Observe snackbar messages
     LaunchedEffect(uiState.snackBarMessage) {
-        println("LaunchedEffect triggered")
         uiState.snackBarMessage?.let { message ->
-            println("Snackbar message received: $message")
             coroutineScope.launch {
-                println("Launching coroutine for snackbar")
                 snackbarHostState.showSnackbar(
                     message = message,
                     duration = SnackbarDuration.Long
@@ -49,6 +51,7 @@ fun UpdateMatkulView(
         }
     }
 
+    // Pass the dosenList here
     Scaffold(
         modifier = modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
@@ -66,9 +69,9 @@ fun UpdateMatkulView(
                 .padding(padding)
                 .padding(16.dp)
         ) {
-            // Body content
             InsertBodyMatkul(
                 uiState = uiState,
+                dosenList = dosenList,  // Ensure the dosenList is passed properly
                 onValueChange = { updatedEvent ->
                     viewModel.updateState(updatedEvent)
                 },
@@ -76,9 +79,9 @@ fun UpdateMatkulView(
                     coroutineScope.launch {
                         if (viewModel.validateFields()) {
                             viewModel.updateDataMK()
-                            delay(600) // Wait for update
+                            delay(600)
                             withContext(Dispatchers.Main) {
-                                onNavigate() // Navigate after successful update
+                                onNavigate()
                             }
                         }
                     }
@@ -87,3 +90,6 @@ fun UpdateMatkulView(
         }
     }
 }
+
+
+

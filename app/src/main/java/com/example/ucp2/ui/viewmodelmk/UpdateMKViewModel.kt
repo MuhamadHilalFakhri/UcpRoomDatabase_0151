@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2.data.entity.MataKuliah
+import com.example.ucp2.repository.RepositoryDosen
 import com.example.ucp2.repository.RepositoryMK
 import com.example.ucp2.ui.navigation.DestinasiUpdateMatkul
 import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel.MataKuliahEvent
@@ -16,10 +17,10 @@ import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel.FormErrorState
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-
 class UpdateMatkulViewModel(
     savedStateHandle: SavedStateHandle,
-    private val repositoryMK: RepositoryMK
+    private val repositoryMK: RepositoryMK,
+    private val repositoryDosen: RepositoryDosen
 ) : ViewModel() {
 
     var updateUIState by mutableStateOf(MatkulUIState())
@@ -27,13 +28,36 @@ class UpdateMatkulViewModel(
 
     private val _kode: String = checkNotNull(savedStateHandle[DestinasiUpdateMatkul.KODE])
 
+    var dosenList by mutableStateOf(listOf<String>())
+
+    // Ambil daftar dosen dari repository
+    fun getDosenList() {
+        viewModelScope.launch {
+            repositoryDosen.getAllDosen().collect { dosenEntities ->
+                dosenList = dosenEntities.map { it.nama }
+            }
+        }
+    }
     init {
         viewModelScope.launch {
             updateUIState = repositoryMK.getMk(_kode)
                 .filterNotNull()
                 .first()
                 .toUIStateMatkul()
+                getDosenList()
         }
+    }
+
+    fun MataKuliah.toUIStateMatkul(): MatkulUIState {
+        return MatkulUIState(
+            mataKuliahEvent = MataKuliahEvent(
+                kode = this.kode,
+                nama = this.nama,
+                sks = this.sks,
+                semester = this.semester,
+                dosenPengampu = this.dosenPengampu
+            )
+        )
     }
 
     fun updateState(mataKuliahEvent: MataKuliahEvent) {
@@ -68,7 +92,6 @@ class UpdateMatkulViewModel(
                         mataKuliahEvent = MataKuliahEvent(),
                         isEntryValid = FormErrorState()
                     )
-                    println("snackBarMessage diatur: ${updateUIState.snackBarMessage}")
                 } catch (e: Exception) {
                     updateUIState = updateUIState.copy(
                         snackBarMessage = "Data gagal diupdate"
@@ -86,11 +109,5 @@ class UpdateMatkulViewModel(
         updateUIState = updateUIState.copy(snackBarMessage = null)
     }
 }
-
-// Memindahkan data dari entity MataKuliah ke UI state
-fun MataKuliah.toUIStateMatkul(): MatkulUIState =
-    MatkulUIState(
-        mataKuliahEvent = this.toDetailUiEvent()
-    )
 
 

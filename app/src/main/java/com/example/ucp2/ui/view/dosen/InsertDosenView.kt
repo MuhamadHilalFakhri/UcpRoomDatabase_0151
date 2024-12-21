@@ -128,10 +128,10 @@ fun InsertBodyDosen(
             onClick = onClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp),  // Add padding to the top
+                .padding(top = 16.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(id = R.color.primary), // Button background color
-                contentColor = Color.White // Button text color
+                containerColor = colorResource(id = R.color.primary),
+                contentColor = Color.White
             )
         ) {
             Text("Simpan")
@@ -195,8 +195,8 @@ fun FormDosen(
                             onValueChange(dosenEvent.copy(jenisKelamin = jk))
                         },
                         colors = RadioButtonDefaults.colors(
-                            selectedColor = colorResource(id = R.color.primary),  // Selected color
-                            unselectedColor = colorResource(id = R.color.bg) // Unselected color
+                            selectedColor = colorResource(id = R.color.primary),
+                            unselectedColor = colorResource(id = R.color.bg)
                         )
                     )
                     Text(

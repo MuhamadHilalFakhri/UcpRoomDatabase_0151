@@ -6,12 +6,24 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2.data.entity.MataKuliah
+import com.example.ucp2.repository.RepositoryDosen
 import com.example.ucp2.repository.RepositoryMK
 import kotlinx.coroutines.launch
 
-class MataKuliahViewModel(private val repositoryMK: RepositoryMK) : ViewModel()
+class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val repositoryDosen: RepositoryDosen) : ViewModel()
 {
     var uiStateMK by mutableStateOf(MatkulUIState())
+
+    var dosenList by mutableStateOf(listOf<String>())
+
+    // Ambil daftar dosen dari repository
+    fun getDosenList() {
+        viewModelScope.launch {
+            repositoryDosen.getAllDosen().collect { dosenEntities ->
+                dosenList = dosenEntities.map { it.nama }
+            }
+        }
+    }
 
     // Memperbarui state berdasarkan input pengguna
     fun updateStateMK(mataKuliahEvent: MataKuliahEvent) {

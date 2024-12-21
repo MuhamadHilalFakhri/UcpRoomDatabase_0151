@@ -44,7 +44,7 @@ fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding) 
+                    .padding(innerPadding)
                     .background(color = colorResource(id = R.color.primary))
             ) {
                 Row(

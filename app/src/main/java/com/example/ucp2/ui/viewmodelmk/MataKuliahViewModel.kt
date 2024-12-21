@@ -33,7 +33,7 @@ class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val re
     }
 
     // Validasi data input pengguna
-    private fun validateFieldsMK(): Boolean {
+     fun validateFieldsMK(): Boolean {
         val event = uiStateMK.mataKuliahEvent
         val errorState = FormErrorState(
             kode = if (event.kode.isNotEmpty()) null else "Kode tidak boleh kosong",

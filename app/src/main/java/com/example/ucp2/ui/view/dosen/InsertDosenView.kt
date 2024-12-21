@@ -1,16 +1,20 @@
 package com.example.ucp2.ui.view.dosen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -22,9 +26,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.R
 import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.navigation.AlamatNavigasi
 import com.example.ucp2.ui.viewmodeldosen.DosenViewModel
@@ -64,11 +70,11 @@ fun InsertDosenView(
     Scaffold(
         modifier = modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ) { padding ->
+    ) { innerPadding ->
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(padding)
+                .fillMaxSize()
+                .padding(innerPadding)
                 .padding(16.dp)
         ) {
             CustomTopAppBar(
@@ -117,14 +123,22 @@ fun InsertBodyDosen(
             errorState = uiState.isEntryValid,
             modifier = Modifier.fillMaxWidth()
         )
+
         Button(
             onClick = onClick,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp),  // Add padding to the top
+            colors = ButtonDefaults.buttonColors(
+                containerColor = colorResource(id = R.color.primary), // Button background color
+                contentColor = Color.White // Button text color
+            )
         ) {
             Text("Simpan")
         }
     }
 }
+
 @Composable
 fun FormDosen(
     dosenEvent: DosenEvent = DosenEvent(),
@@ -179,7 +193,11 @@ fun FormDosen(
                         selected = dosenEvent.jenisKelamin == jk,
                         onClick = {
                             onValueChange(dosenEvent.copy(jenisKelamin = jk))
-                        }
+                        },
+                        colors = RadioButtonDefaults.colors(
+                            selectedColor = colorResource(id = R.color.primary),  // Selected color
+                            unselectedColor = colorResource(id = R.color.bg) // Unselected color
+                        )
                     )
                     Text(
                         text = jk,
@@ -193,3 +211,4 @@ fun FormDosen(
         )
     }
 }
+

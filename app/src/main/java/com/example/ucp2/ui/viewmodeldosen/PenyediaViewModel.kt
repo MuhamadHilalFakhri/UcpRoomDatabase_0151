@@ -24,12 +24,6 @@ object PenyediaViewModel {
             )
         }
         initializer {
-            DetailDosenViewModel(
-                createSavedStateHandle(),
-                sisforApp().containerApp.repositoryDosen
-            )
-        }
-        initializer {
             MataKuliahViewModel(
                 sisforApp().containerApp.repositoryMK,
                 sisforApp().containerApp.repositoryDosen

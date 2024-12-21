@@ -51,7 +51,7 @@ fun PengelolaHalamanMK(
             )
         }
 
-        // Detail Mata Kuliah screen, with argument "kode"
+        // Detail Mata Kuliah , with argument "kode"
         composable(
             DestinasiDetailMatkul.routesWithArg,
             arguments = listOf(
@@ -78,7 +78,7 @@ fun PengelolaHalamanMK(
             }
         }
 
-        // Update Mata Kuliah screen, with argument "kode"
+        // Update Mata Kuliah , with argument "kode"
         composable(
             DestinasiUpdateMatkul.routesWithArg,
             arguments = listOf(

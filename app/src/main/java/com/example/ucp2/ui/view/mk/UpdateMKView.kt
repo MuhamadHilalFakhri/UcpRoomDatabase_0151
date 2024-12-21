@@ -51,7 +51,7 @@ fun UpdateMatkulView(
         }
     }
 
-    // Pass the dosenList here
+
     Scaffold(
         modifier = modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
@@ -71,7 +71,7 @@ fun UpdateMatkulView(
         ) {
             InsertBodyMatkul(
                 uiState = uiState,
-                dosenList = dosenList,  // Ensure the dosenList is passed properly
+                dosenList = dosenList,
                 onValueChange = { updatedEvent ->
                     viewModel.updateState(updatedEvent)
                 },

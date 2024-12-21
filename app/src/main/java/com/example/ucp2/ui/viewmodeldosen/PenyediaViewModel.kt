@@ -31,7 +31,8 @@ object PenyediaViewModel {
         }
         initializer {
             MataKuliahViewModel(
-                sisforApp().containerApp.repositoryMK
+                sisforApp().containerApp.repositoryMK,
+                sisforApp().containerApp.repositoryDosen
             )
         }
         initializer {
@@ -49,7 +50,7 @@ object PenyediaViewModel {
             UpdateMatkulViewModel(
                 createSavedStateHandle(),
                 sisforApp().containerApp.repositoryMK,
-
+                sisforApp().containerApp.repositoryDosen
                 )
         }
     }

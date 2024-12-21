@@ -33,7 +33,10 @@ import com.example.ucp2.ui.viewmodeldosen.PenyediaViewModel
 import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel
 import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel.MataKuliahEvent
 import com.example.ucp2.ui.viewmodelmk.MataKuliahViewModel.FormErrorState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object DestinasiInsertMatkul : AlamatNavigasi {
     override val route: String = "insert_matkul"
@@ -87,9 +90,14 @@ fun InsertMatkulView(
                 },
                 onClick = {
                     coroutineScope.launch {
-                        viewModel.saveDataMK() // Save data
+                        if (viewModel.validateFieldsMK()) {
+                            viewModel.saveDataMK()
+                            delay(600)
+                            withContext(Dispatchers.Main) {
+                                onNavigate()
+                            }
+                        }
                     }
-                    onNavigate()
                 }
             )
         }
@@ -99,7 +107,8 @@ fun InsertMatkulView(
 @Composable
 fun InsertBodyMatkul(
     modifier: Modifier = Modifier,
-    onValueChange: (MataKuliahViewModel.MataKuliahEvent) -> Unit,
+    viewModel: MataKuliahViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onValueChange: (MataKuliahEvent) -> Unit,
     uiState: MataKuliahViewModel.MatkulUIState,
     dosenList: List<String>,
     onClick: () -> Unit

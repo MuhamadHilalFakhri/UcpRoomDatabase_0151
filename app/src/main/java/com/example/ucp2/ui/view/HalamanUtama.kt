@@ -23,7 +23,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,7 +39,7 @@ import com.example.ucp2.R
 fun HalamanUtama(navController: NavController,
                  modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(
                 color = colorResource(
@@ -77,93 +79,110 @@ fun HalamanUtama(navController: NavController,
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(
-                        topEnd = 15.dp,
-                        topStart = 15.dp
-                    )
-                )
-        ){
+        ) {
 
-            Column (
+            Image(
+                painter = painterResource(id = R.drawable.umy),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ){
-                Text(
-                    text = "Pengelolaan Data Dosen dan Matakuliah",
-                    color = Color.Black,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Button(
-                    onClick = {
-                        navController.navigate("Dosen")
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF194A7A),
-                        contentColor = Color.White
-                    ),
-                    modifier = Modifier.padding(8.dp)
-                        .height(50.dp)
-                        .fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp)
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
+                    .size(450.dp)
+                    .align(Alignment.Center)
+                    .alpha(500f)
+            )
 
-                        Text(
-                            text = "Dosen",
-                            fontSize = 18.sp,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.Start
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        color = Color.White.copy(alpha = 0.9f),
+                        shape = RoundedCornerShape(
+                            topEnd = 15.dp,
+                            topStart = 15.dp
                         )
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowRight,
-                            contentDescription = "Arrow End",
-                            tint = Color.White
-                        )
+                    )
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Text(
+                        text = "Pengelolaan Data Dosen dan Matakuliah",
+                        color = Color.Black,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Button(
+                        onClick = {
+                            navController.navigate("Dosen")
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF003f5c),
+                            contentColor = Color.White
+                        ),
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .height(50.dp)
+                            .fillMaxWidth(),
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Dosen",
+                                fontSize = 18.sp,
+                                modifier = Modifier.weight(1f),
+                                textAlign = TextAlign.Start
+                            )
+                            Icon(
+                                imageVector = Icons.Default.KeyboardArrowRight,
+                                contentDescription = "Arrow End",
+                                tint = Color.White
+                            )
+                        }
+                    }
+
+                    Button(
+                        onClick = {
+                            navController.navigate("MK")
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF003f5c),
+                            contentColor = Color.White
+                        ),
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .height(50.dp)
+                            .fillMaxWidth(),
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Matakuliah",
+                                fontSize = 18.sp,
+                                modifier = Modifier.weight(1f),
+                                textAlign = TextAlign.Start
+                            )
+                            Icon(
+                                imageVector = Icons.Default.KeyboardArrowRight,
+                                contentDescription = "Arrow End",
+                                tint = Color.White
+                            )
+                        }
                     }
                 }
-
-                Button(
-                    onClick = {
-                        navController.navigate("MK")
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF476F95),
-                        contentColor = Color.White
-                    ),
-                    modifier = Modifier.padding(8.dp)
-                        .height(50.dp)
-                        .fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp)
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = "Matakuliah",
-                            fontSize = 18.sp,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.Start
-                        )
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowRight,
-                            contentDescription = "Arrow End",
-                            tint = Color.White
-                        )
-                    }
-                }
-
             }
         }
+
     }
 }

@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,153 +37,150 @@ import androidx.navigation.NavController
 import com.example.ucp2.R
 
 @Composable
-fun HalamanUtama(navController: NavController,
-                 modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(
-                color = colorResource(
-                    id = R.color.primary
-                )
-            )
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(30.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                modifier = Modifier.size(110.dp),
-                painter = painterResource(
-                    id = R.drawable.umy
-                ),
-                contentDescription = ""
-            )
-
-            Spacer(modifier = Modifier.padding(start = 20.dp))
-
-            Column {
-                Text(
-                    text = "Universitas Muhammadiyah Yogyakarta",
-                    color = Color.White,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = "Teknologi Informasi",
-                    color = Color.White,
-                    fontWeight = FontWeight.Light
-                )
-            }
-        }
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-
-            Image(
-                painter = painterResource(id = R.drawable.umy),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(450.dp)
-                    .align(Alignment.Center)
-                    .alpha(500f)
-            )
-
-
-            Box(
+fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier) {
+    Scaffold(
+        modifier = modifier,
+        content = { innerPadding ->
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(
-                        color = Color.White.copy(alpha = 0.9f),
-                        shape = RoundedCornerShape(
-                            topEnd = 15.dp,
-                            topStart = 15.dp
-                        )
-                    )
+                    .padding(innerPadding) 
+                    .background(color = colorResource(id = R.color.primary))
             ) {
-                Column(
+                Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                        .padding(30.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Pengelolaan Data Dosen dan Matakuliah",
-                        color = Color.Black,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
+                    Image(
+                        modifier = Modifier.size(110.dp),
+                        painter = painterResource(id = R.drawable.umy),
+                        contentDescription = ""
                     )
-                    Button(
-                        onClick = {
-                            navController.navigate("Dosen")
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF003f5c),
-                            contentColor = Color.White
-                        ),
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .height(50.dp)
-                            .fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp)
-                    ) {
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Text(
-                                text = "Dosen",
-                                fontSize = 18.sp,
-                                modifier = Modifier.weight(1f),
-                                textAlign = TextAlign.Start
-                            )
-                            Icon(
-                                imageVector = Icons.Default.KeyboardArrowRight,
-                                contentDescription = "Arrow End",
-                                tint = Color.White
-                            )
-                        }
+                    Spacer(modifier = Modifier.padding(start = 20.dp))
+                    Column {
+                        Text(
+                            text = "Universitas Muhammadiyah Yogyakarta",
+                            color = Color.White,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "Teknologi Informasi",
+                            color = Color.White,
+                            fontWeight = FontWeight.Light
+                        )
                     }
+                }
 
-                    Button(
-                        onClick = {
-                            navController.navigate("MK")
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF003f5c),
-                            contentColor = Color.White
-                        ),
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.umy),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .padding(8.dp)
-                            .height(50.dp)
-                            .fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp)
+                            .size(450.dp)
+                            .align(Alignment.Center)
+                            .alpha(0.5f) // Adjust alpha as needed
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(
+                                color = Color.White.copy(alpha = 0.9f),
+                                shape = RoundedCornerShape(
+                                    topEnd = 15.dp,
+                                    topStart = 15.dp
+                                )
+                            )
                     ) {
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.fillMaxWidth()
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
-                                text = "Matakuliah",
+                                text = "Pengelolaan Data Dosen dan Matakuliah",
+                                color = Color.Black,
                                 fontSize = 18.sp,
-                                modifier = Modifier.weight(1f),
-                                textAlign = TextAlign.Start
+                                fontWeight = FontWeight.Bold
                             )
-                            Icon(
-                                imageVector = Icons.Default.KeyboardArrowRight,
-                                contentDescription = "Arrow End",
-                                tint = Color.White
-                            )
+
+                            Button(
+                                onClick = {
+                                    navController.navigate("Dosen")
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0xFF003f5c),
+                                    contentColor = Color.White
+                                ),
+                                modifier = Modifier
+                                    .padding(8.dp)
+                                    .height(50.dp)
+                                    .fillMaxWidth(),
+                                shape = RoundedCornerShape(12.dp)
+                            ) {
+                                Row(
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    Text(
+                                        text = "Dosen",
+                                        fontSize = 18.sp,
+                                        modifier = Modifier.weight(1f),
+                                        textAlign = TextAlign.Start
+                                    )
+                                    Icon(
+                                        imageVector = Icons.Default.KeyboardArrowRight,
+                                        contentDescription = "Arrow End",
+                                        tint = Color.White
+                                    )
+                                }
+                            }
+
+                            Button(
+                                onClick = {
+                                    navController.navigate("MK")
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0xFF003f5c),
+                                    contentColor = Color.White
+                                ),
+                                modifier = Modifier
+                                    .padding(8.dp)
+                                    .height(50.dp)
+                                    .fillMaxWidth(),
+                                shape = RoundedCornerShape(12.dp)
+                            ) {
+                                Row(
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    Text(
+                                        text = "Matakuliah",
+                                        fontSize = 18.sp,
+                                        modifier = Modifier.weight(1f),
+                                        textAlign = TextAlign.Start
+                                    )
+                                    Icon(
+                                        imageVector = Icons.Default.KeyboardArrowRight,
+                                        contentDescription = "Arrow End",
+                                        tint = Color.White
+                                    )
+                                }
+                            }
                         }
                     }
                 }
             }
         }
-
-    }
+    )
 }
+

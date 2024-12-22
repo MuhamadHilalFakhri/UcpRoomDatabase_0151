@@ -9,17 +9,21 @@
 ![image](https://github.com/user-attachments/assets/5f3c4442-7edd-46f6-ad3a-873fb55e89cf)
 
 -Halaman Utama Matakuliah
-![image](https://github.com/user-attachments/assets/e511abb3-860a-4e4d-8781-2685681c7e83)
+![image](https://github.com/user-attachments/assets/71128d2d-c878-4072-a7a8-09eb34ca31ef)
+
 
 -Halaman Tambah Matakuliah
-![image](https://github.com/user-attachments/assets/7b094e0d-dae4-4e22-876d-4d9ef3e723d5)
+![image](https://github.com/user-attachments/assets/d83993d6-118c-45a0-8ed5-1cf96e47b7d8)
+
 
 -Halaman Detail Matakuliah
-![image](https://github.com/user-attachments/assets/aa754eeb-dff7-4cd6-bdfb-cd0dbe666406)
-![image](https://github.com/user-attachments/assets/a57b7827-6eac-4825-a021-00f5fb94664a)
+![image](https://github.com/user-attachments/assets/e17a903f-b58c-4601-bd55-c68a3e37c4f9)
+![image](https://github.com/user-attachments/assets/477090e3-1720-4f58-9673-de90a328c2b9)
+
 
 -Halaman Edit Matakuliah
-![image](https://github.com/user-attachments/assets/524d2e83-cc1d-49c1-8761-8e3c3021c9f6)
+![image](https://github.com/user-attachments/assets/0ca8a7e3-7e89-4323-ab23-00ccc5e5deb9)
+
 
 
 

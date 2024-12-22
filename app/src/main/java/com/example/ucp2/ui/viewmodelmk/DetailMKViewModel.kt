@@ -81,6 +81,7 @@ fun MataKuliah.toDetailUiEvent(): MataKuliahEvent {
         nama = nama,
         sks = sks,
         semester = semester,
+        jenis = jenis,
         dosenPengampu = dosenPengampu
     )
 }
@@ -90,5 +91,7 @@ fun MataKuliahEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
     nama = nama,
     sks = sks,
     semester = semester,
+    jenis = jenis,
     dosenPengampu = dosenPengampu
 )
+

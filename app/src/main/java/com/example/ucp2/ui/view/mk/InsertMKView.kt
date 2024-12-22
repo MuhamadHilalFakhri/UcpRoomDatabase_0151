@@ -154,6 +154,7 @@ fun FormMatkul(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
+        // Fields Kode, Nama, SKS, Semester (sama seperti sebelumnya)
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = mataKuliahEvent.kode,
@@ -204,19 +205,22 @@ fun FormMatkul(
         )
         Text(text = errorState.semester ?: "", color = Color.Red)
 
-        var expanded by remember { mutableStateOf(false) }
-        var selectedDosen by remember { mutableStateOf(mataKuliahEvent.dosenPengampu) }
+
+        // Dropdown untuk Jenis Mata Kuliah
+        var expandedJenis by remember { mutableStateOf(false) }
+        var selectedJenis by remember { mutableStateOf(mataKuliahEvent.jenis) }
+        val jenisOptions = listOf("Wajib","Peminatan")
 
         ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded }
+            expanded = expandedJenis,
+            onExpandedChange = { expandedJenis = !expandedJenis }
         ) {
             OutlinedTextField(
-                value = selectedDosen,
+                value = selectedJenis,
                 onValueChange = { },
                 readOnly = true,
-                label = { Text("Dosen Pengampu") },
-                isError = errorState.dosenPengampu != null,
+                label = { Text("Jenis Mata Kuliah") },
+                isError = errorState.jenis != null,
                 modifier = Modifier.menuAnchor().fillMaxWidth(),
                 trailingIcon = {
                     androidx.compose.material3.Icon(
@@ -226,22 +230,64 @@ fun FormMatkul(
                 }
             )
             ExposedDropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false }
+                expanded = expandedJenis,
+                onDismissRequest = { expandedJenis = false }
             ) {
-                dosenList.forEach { dosen ->
+                jenisOptions.forEach { jenis ->
                     androidx.compose.material3.DropdownMenuItem(
                         onClick = {
-                            selectedDosen = dosen
-                            onValueChange(mataKuliahEvent.copy(dosenPengampu = dosen))
-                            expanded = false
+                            selectedJenis = jenis
+                            onValueChange(mataKuliahEvent.copy(jenis = jenis))
+                            expandedJenis = false
                         },
-                        text = { Text(dosen) }
+                        text = { Text(jenis) }
                     )
                 }
             }
         }
-        Text(text = errorState.dosenPengampu ?: "", color = Color.Red)
+        Text(text = errorState.jenis ?: "", color = Color.Red)
     }
+    // Dropdown untuk Dosen Pengampu (sama seperti sebelumnya)
+    var expandedDosen by remember { mutableStateOf(false) }
+    var selectedDosen by remember { mutableStateOf(mataKuliahEvent.dosenPengampu) }
+
+    ExposedDropdownMenuBox(
+        expanded = expandedDosen,
+        onExpandedChange = { expandedDosen = !expandedDosen }
+    ) {
+        OutlinedTextField(
+            value = selectedDosen,
+            onValueChange = { },
+            readOnly = true,
+            label = { Text("Dosen Pengampu") },
+            isError = errorState.dosenPengampu != null,
+            modifier = Modifier.menuAnchor().fillMaxWidth(),
+            trailingIcon = {
+                androidx.compose.material3.Icon(
+                    imageVector = androidx.compose.material.icons.Icons.Default.ArrowDropDown,
+                    contentDescription = null
+                )
+            }
+        )
+        ExposedDropdownMenu(
+            expanded = expandedDosen,
+            onDismissRequest = { expandedDosen = false }
+        ) {
+            dosenList.forEach { dosen ->
+                androidx.compose.material3.DropdownMenuItem(
+                    onClick = {
+                        selectedDosen = dosen
+                        onValueChange(mataKuliahEvent.copy(dosenPengampu = dosen))
+                        expandedDosen = false
+                    },
+                    text = { Text(dosen) }
+                )
+            }
+        }
+    }
+    Text(text = errorState.dosenPengampu ?: "", color = Color.Red)
+
 }
+
+
 

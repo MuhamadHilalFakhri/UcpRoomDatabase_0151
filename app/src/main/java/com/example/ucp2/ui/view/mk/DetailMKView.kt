@@ -123,7 +123,7 @@ fun BodyDetailMatkul(
                     },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
-                       containerColor =  colorResource(id = R.color.primary)
+                        containerColor =  colorResource(id = R.color.primary)
                     )
                 ) {
                     Icon(
@@ -187,6 +187,9 @@ fun ItemDetailMatkul(
             ComponentDetailMatkul(judul = "Semester", isinya = matkul.semester)
             Spacer(modifier = Modifier.padding(4.dp))
 
+            ComponentDetailMatkul(judul = "Jenis", isinya = matkul.jenis)
+            Spacer(modifier = Modifier.padding(4.dp))
+
             ComponentDetailMatkul(judul = "Dosen Pengampu", isinya = matkul.dosenPengampu)
             Spacer(modifier = Modifier.padding(4.dp))
         }
@@ -241,3 +244,4 @@ private fun DeleteConfirmationDialogMK(
         }
     )
 }
+

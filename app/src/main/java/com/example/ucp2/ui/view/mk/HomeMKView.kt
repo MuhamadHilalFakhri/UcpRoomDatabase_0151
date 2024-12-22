@@ -56,8 +56,9 @@ import com.example.ucp2.ui.customwidget.CustomTopAppBar
 import com.example.ucp2.ui.viewmodeldosen.PenyediaViewModel
 import com.example.ucp2.ui.viewmodelmk.HomeMatkulUiState
 import com.example.ucp2.ui.viewmodelmk.HomeMatkulViewModel
-
 import kotlinx.coroutines.launch
+
+
 @Composable
 fun HomeMatkulView(
     viewModel: HomeMatkulViewModel = viewModel(factory = PenyediaViewModel.Factory),
@@ -296,6 +297,18 @@ fun CardMatkul(
                 Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
+                    text = "Jens : ${matkul.jenis}",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
                     text = "Pengampu : ${matkul.dosenPengampu}",
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
@@ -304,3 +317,4 @@ fun CardMatkul(
         }
     }
 }
+

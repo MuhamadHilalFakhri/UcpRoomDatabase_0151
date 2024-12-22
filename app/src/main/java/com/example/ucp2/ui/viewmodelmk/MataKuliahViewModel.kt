@@ -10,8 +10,7 @@ import com.example.ucp2.repository.RepositoryDosen
 import com.example.ucp2.repository.RepositoryMK
 import kotlinx.coroutines.launch
 
-class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val repositoryDosen: RepositoryDosen) : ViewModel()
-{
+class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val repositoryDosen: RepositoryDosen) : ViewModel() {
     var uiStateMK by mutableStateOf(MatkulUIState())
 
     var dosenList by mutableStateOf(listOf<String>())
@@ -33,13 +32,14 @@ class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val re
     }
 
     // Validasi data input pengguna
-     fun validateFieldsMK(): Boolean {
+    fun validateFieldsMK(): Boolean {
         val event = uiStateMK.mataKuliahEvent
         val errorState = FormErrorState(
             kode = if (event.kode.isNotEmpty()) null else "Kode tidak boleh kosong",
             nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
             sks = if (event.sks.isNotEmpty()) null else "SKS tidak boleh kosong",
             semester = if (event.semester.isNotEmpty()) null else "Semester tidak boleh kosong",
+            jenis = if (event.jenis.isNotEmpty()) null else "Jenis tidak boleh kosong",
             dosenPengampu = if (event.dosenPengampu.isNotEmpty()) null else "Dosen Pengampu tidak boleh kosong"
         )
 
@@ -72,7 +72,6 @@ class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val re
         }
     }
 
-
     // Reset pesan Snackbar setelah ditampilkan
     fun resetSnackBarMessageMK() {
         uiStateMK = uiStateMK.copy(
@@ -91,11 +90,12 @@ class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val re
         val nama: String? = null,
         val sks: String? = null,
         val semester: String? = null,
+        val jenis: String? = null,
         val dosenPengampu: String? = null,
     ) {
         fun isValid(): Boolean {
             return kode == null && nama == null && sks == null &&
-                    semester == null && dosenPengampu == null
+                    semester == null && jenis == null && dosenPengampu == null
         }
     }
 
@@ -104,6 +104,7 @@ class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val re
         val nama: String = "",
         val sks: String = "",
         val semester: String = "",
+        val jenis: String = "",
         val dosenPengampu: String = ""
     )
 
@@ -113,6 +114,7 @@ class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val re
         nama = nama,
         sks = sks,
         semester = semester,
+        jenis = jenis,
         dosenPengampu = dosenPengampu
     )
 }

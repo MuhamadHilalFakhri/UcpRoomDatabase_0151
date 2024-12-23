@@ -16,7 +16,7 @@ fun PengelolaHalamanDosen(
     modifier: Modifier = Modifier
 ) {
     NavHost(navController = navController, startDestination = DestinasiHomeDosen.route) {
-        // Halaman Home (List Dosen)
+        // Navigasi Halaman Home (List Dosen)
         composable(
             route = DestinasiHomeDosen.route
         ) {
@@ -28,7 +28,7 @@ fun PengelolaHalamanDosen(
             )
         }
 
-        // Halaman Tambah Dosen
+        //Navigasi Halaman Tambah Dosen
         composable(
             route = DestinasiInsert.route
         ) {

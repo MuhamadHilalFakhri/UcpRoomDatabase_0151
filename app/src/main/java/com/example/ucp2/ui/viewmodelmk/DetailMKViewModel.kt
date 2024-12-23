@@ -85,7 +85,7 @@ fun MataKuliah.toDetailUiEvent(): MataKuliahEvent {
         dosenPengampu = dosenPengampu
     )
 }
-
+// Menyimpan input form ke dalam entity
 fun MataKuliahEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
     kode = kode,
     nama = nama,

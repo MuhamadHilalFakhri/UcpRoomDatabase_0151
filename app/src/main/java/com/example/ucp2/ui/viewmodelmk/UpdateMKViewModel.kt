@@ -41,6 +41,7 @@ class UpdateMatkulViewModel(
         }
     }
 
+    //memuat data secara asinkron
     init {
         viewModelScope.launch {
             updateUIState = repositoryMK.getMk(_kode)
@@ -51,6 +52,7 @@ class UpdateMatkulViewModel(
         }
     }
 
+    //konversi objek data MataKuliah menjadi sebuah objek MatkulUIState
     fun MataKuliah.toUIStateMatkul(): MatkulUIState {
         return MatkulUIState(
             mataKuliahEvent = MataKuliahEvent(
@@ -64,6 +66,7 @@ class UpdateMatkulViewModel(
         )
     }
 
+    //untuk memperbarui state UI dengan data baru yang diterima dalam bentuk MataKuliahEvent
     fun updateState(mataKuliahEvent: MataKuliahEvent) {
         updateUIState = updateUIState.copy(
             mataKuliahEvent = mataKuliahEvent,

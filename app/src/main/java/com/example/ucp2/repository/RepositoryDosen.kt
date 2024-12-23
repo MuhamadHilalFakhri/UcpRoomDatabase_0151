@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface RepositoryDosen
 
+//aturan untuk mengelola data dosen
 {
     suspend fun insertDosen(dosen: Dosen)
 

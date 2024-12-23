@@ -11,7 +11,7 @@ interface InterfaceContainerApp {
     val repositoryDosen: RepositoryDosen
     val repositoryMK: RepositoryMK
 }
-
+//untuk mengelola dan menyediakan instance dari repository
 class ContainerApp(private val context: Context) : InterfaceContainerApp {
     override val repositoryDosen: RepositoryDosen by lazy {
         LocalRepositoryDosen(AllDatabase.getDatabase(context).dosenDao())

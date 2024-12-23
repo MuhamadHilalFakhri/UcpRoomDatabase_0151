@@ -21,6 +21,7 @@ fun PengelolaHalamanMK(
 ) {
     NavHost(navController = navController, startDestination = DestinasiHomeMatkul.route) {
 
+        //Navigasi Home Mata Kuliah
         composable(
             route = DestinasiHomeMatkul.route
         ) {
@@ -36,7 +37,7 @@ fun PengelolaHalamanMK(
             )
         }
 
-        // Insert Mata Kuliah (Course) screen
+        //Navigasi Insert Mata Kuliah
         composable(
             route = DestinasiInsertMatkul.route
         ) {
@@ -51,7 +52,7 @@ fun PengelolaHalamanMK(
             )
         }
 
-        // Detail Mata Kuliah , with argument "kode"
+        //Navigasi Detail Mata Kuliah
         composable(
             DestinasiDetailMatkul.routesWithArg,
             arguments = listOf(
@@ -78,7 +79,7 @@ fun PengelolaHalamanMK(
             }
         }
 
-        // Update Mata Kuliah , with argument "kode"
+        //Navigasi Update Mata Kuliah
         composable(
             DestinasiUpdateMatkul.routesWithArg,
             arguments = listOf(

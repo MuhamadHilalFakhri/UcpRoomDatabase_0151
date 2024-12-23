@@ -5,11 +5,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -147,9 +150,9 @@ fun InsertBodyMatkul(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormMatkul(
-    mataKuliahEvent: MataKuliahViewModel.MataKuliahEvent = MataKuliahViewModel.MataKuliahEvent(),
-    onValueChange: (MataKuliahViewModel.MataKuliahEvent) -> Unit,
-    errorState: MataKuliahViewModel.FormErrorState = MataKuliahViewModel.FormErrorState(),
+    mataKuliahEvent: MataKuliahEvent = MataKuliahEvent(),
+    onValueChange: (MataKuliahEvent) -> Unit,
+    errorState: FormErrorState = FormErrorState(),
     dosenList: List<String>,
     modifier: Modifier = Modifier
 ) {
@@ -223,8 +226,8 @@ fun FormMatkul(
                 isError = errorState.jenis != null,
                 modifier = Modifier.menuAnchor().fillMaxWidth(),
                 trailingIcon = {
-                    androidx.compose.material3.Icon(
-                        imageVector = androidx.compose.material.icons.Icons.Default.ArrowDropDown,
+                    Icon(
+                        imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = null
                     )
                 }
@@ -234,7 +237,7 @@ fun FormMatkul(
                 onDismissRequest = { expandedJenis = false }
             ) {
                 jenisOptions.forEach { jenis ->
-                    androidx.compose.material3.DropdownMenuItem(
+                    DropdownMenuItem(
                         onClick = {
                             selectedJenis = jenis
                             onValueChange(mataKuliahEvent.copy(jenis = jenis))
@@ -263,8 +266,8 @@ fun FormMatkul(
             isError = errorState.dosenPengampu != null,
             modifier = Modifier.menuAnchor().fillMaxWidth(),
             trailingIcon = {
-                androidx.compose.material3.Icon(
-                    imageVector = androidx.compose.material.icons.Icons.Default.ArrowDropDown,
+                Icon(
+                    imageVector = Icons.Default.ArrowDropDown,
                     contentDescription = null
                 )
             }
@@ -274,7 +277,7 @@ fun FormMatkul(
             onDismissRequest = { expandedDosen = false }
         ) {
             dosenList.forEach { dosen ->
-                androidx.compose.material3.DropdownMenuItem(
+                DropdownMenuItem(
                     onClick = {
                         selectedDosen = dosen
                         onValueChange(mataKuliahEvent.copy(dosenPengampu = dosen))

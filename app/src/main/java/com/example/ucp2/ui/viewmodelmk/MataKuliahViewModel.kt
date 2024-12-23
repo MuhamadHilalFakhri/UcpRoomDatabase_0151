@@ -78,7 +78,7 @@ class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val re
             snackBarMessage = null
         )
     }
-
+    //membuat data class untuk membungkus data class lainnya
     data class MatkulUIState(
         val mataKuliahEvent: MataKuliahEvent = MataKuliahEvent(),
         val isEntryValid: FormErrorState = FormErrorState(),
@@ -98,7 +98,7 @@ class MataKuliahViewModel(private val repositoryMK: RepositoryMK, private val re
                     semester == null && jenis == null && dosenPengampu == null
         }
     }
-
+    // Data class untuk menyimpan data input form
     data class MataKuliahEvent(
         val kode: String = "",
         val nama: String = "",

@@ -67,6 +67,7 @@ class DosenViewModel (private val repositoryDosen: RepositoryDosen) : ViewModel(
 
 
 
+    //membuat data class untuk membungkus data class lainnya
     data class DosenUIState(
         val dosenEvent: DosenEvent = DosenEvent(),
         val isEntryValid: FormErrorState = FormErrorState(),
